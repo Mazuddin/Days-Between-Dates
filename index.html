@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Days Between Dates Calculator</title>
+  <style>
+    /* CSS styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1f1f1fe8;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .box {
+      width: 500px;
+      margin: 0 auto;
+      background-color: rgb(255, 255, 255);
+      padding: 20px;
+      border: 1px solid #393838;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #333333;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      color: #333333;
+      font-weight: bold;
+    }
+
+    input[type="date"] {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #cccccc;
+    }
+
+    button {
+      padding: 12px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #333333;
+      font-size: 18px;
+    }
+
+    #local-time {
+      margin-top: 30px;
+      font-size: 60px;
+      color: #070707;
+    }
+
+    .copyright {
+      margin-top: 20px;
+      color: #888888;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Days Between Dates</h1>
+
+    <label for="start-date">Start Date:</label>
+    <input type="date" id="start-date">
+
+    <label for="end-date">End Date:</label>
+    <input type="date" id="end-date">
+
+    <button onclick="calculateDays()">Calculate</button>
+
+    <p id="result"></p>
+    <p id="local-time"></p>
+    <p class="copyright">
+      &copy; 2023 Iman. All rights reserved.
+    </p>
+  </div>
+
+  <script>
+    function calculateDays() {
+      var startDate = new Date(document.getElementById("start-date").value);
+      var endDate = new Date(document.getElementById("end-date").value);
+      var timeDiff = Math.abs(endDate.getTime() - startDate.getTime());
+      var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+      document.getElementById("result").innerHTML = "Number of days between the two dates: " + diffDays;
+    }
+
+    function updateTime() {
+      var currentTime = new Date().toLocaleTimeString();
+      document.getElementById("local-time").innerHTML = currentTime;
+    }
+
+    // Update the time every second
+    setInterval(updateTime, 1000);
+
+    // Initial time update
+    updateTime();
+  </script>
+</body>
+</html>
